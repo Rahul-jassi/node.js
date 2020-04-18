@@ -5,6 +5,14 @@
 const notes = require('./notes.js')
 // console.log(process.argv)
 // console.log(yargs.argv)
+// another task
+//wireup read command
+// 1.setup title option for read command
+// 2.create readnote.js in notes.js
+//-find note and print title (styled) and body plain 
+//- no note find then print error in red
+// 3. have the command handler call the function
+// test your work
 yargs.version= ('1.0.0')
 yargs.command({
     command:'add',
@@ -54,8 +62,17 @@ yargs.command({
 yargs.command({
     command:'read',
     describe:'read a new note',
-    handler(){
-       console.log('read a new note')
+    builder:{
+        title:{
+          describe:'note-title',
+          demandOption:true,
+          type:'String'
+        }
+
+    },
+    handler(argv){
+        notes.readNote(argv.title)
+    //    console.log('read a new note')
     }
 })
 console.log(yargs.argv)
